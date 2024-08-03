@@ -1,30 +1,50 @@
 const db = require("../db/queries");
 
 async function createDepartment(req, res) {
-  const { name, description } = req.body;
-  await db.insertDepartment(name, description);
-  res.redirect("/");
+  try {
+    const { name, description } = req.body;
+    await db.insertDepartment(name, description);
+    res.redirect("/");
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 async function getDepartments(req, res) {
-  res.json(await db.getAllDepartments());
+  try {
+    res.json(await db.getAllDepartments());
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 async function getDepartment(req, res) {
-  const { id } = req.body;
-  res.json(await db.getOneDepartment(id));
+  try {
+    const { id } = req.body;
+    res.json(await db.getOneDepartment(id));
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 async function updateDepartment(req, res) {
-  const { id, name, description } = req.body;
-  await db.updateDepartment(id, name, description);
-  res.redirect("/");
+  try {
+    const { id, name, description } = req.body;
+    await db.updateDepartment(id, name, description);
+    res.redirect("/");
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 async function deleteDepartment(req, res) {
-  const { id } = req.body;
-  await db.deleteDepartment(id);
-  res.redirect("/");
+  try {
+    const { id } = req.body;
+    await db.deleteDepartment(id);
+    res.redirect("/");
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 module.exports = {
