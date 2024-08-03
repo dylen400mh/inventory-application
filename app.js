@@ -1,6 +1,12 @@
 const express = require("express");
 const app = express();
+const departmentsRouter = require("./routes/departmentsRouter");
+const itemsRouter = require("./routes/itemsRouter");
+
 require("dotenv").config();
+
+app.use(departmentsRouter);
+app.use(itemsRouter);
 
 app.get("/", (req, res) => res.send("Hello"));
 
