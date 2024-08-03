@@ -1,7 +1,10 @@
 const pool = require("./pool");
 
-async function insertDepartment(name) {
-  await pool.query("INSERT INTO department (name) VALUES ($1)", [name]);
+async function insertDepartment(name, description) {
+  await pool.query(
+    "INSERT INTO department (name, description) VALUES ($1, $2)",
+    [name, description]
+  );
 }
 
 async function getAllDepartments() {
@@ -16,8 +19,11 @@ async function getOneDepartment(id) {
   return rows[0];
 }
 
-async function updateDepartment(id, name) {
-  await pool.query("UPDATE department SET name = $1 WHERE id = $2", [name, id]);
+async function updateDepartment(id, name, description) {
+  await pool.query(
+    "UPDATE department SET name = $1, description = $2 WHERE id = $3",
+    [name, description, id]
+  );
 }
 
 async function deleteDepartment(id) {
