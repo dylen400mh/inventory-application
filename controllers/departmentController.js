@@ -12,7 +12,8 @@ async function createDepartment(req, res) {
 
 async function getDepartments(req, res) {
   try {
-    res.json(await db.getAllDepartments());
+    departments = await db.getAllDepartments();
+    res.render("departments", { departments });
   } catch (error) {
     console.error(error);
   }

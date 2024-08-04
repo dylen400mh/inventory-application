@@ -12,7 +12,7 @@ app.set("view engine", "ejs");
 app.use(departmentsRouter);
 app.use(itemsRouter);
 
-app.get("/", (req, res) => res.send("Hello"));
+app.get("/", (req, res) => res.redirect("/departments"));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

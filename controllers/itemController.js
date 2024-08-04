@@ -13,7 +13,8 @@ async function createItem(req, res) {
 async function getItemsByDepartment(req, res) {
   try {
     const { department_id } = req.body;
-    res.json(await db.getItemsByDepartment(department_id));
+    items = await db.getItemsByDepartment(department_id);
+    res.render("items", { items });
   } catch (error) {
     console.error(error);
   }
