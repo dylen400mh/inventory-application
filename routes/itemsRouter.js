@@ -10,7 +10,7 @@ const {
 const itemsRouter = Router();
 
 itemsRouter.post("/", createItem);
-itemsRouter.get("/", getItemsByDepartment);
+itemsRouter.get("/department/:department_id", getItemsByDepartment);
 itemsRouter.get("/:id", getItem);
 itemsRouter.put("/:id", updateItem);
 itemsRouter.delete("/:id", deleteItem);
