@@ -9,8 +9,8 @@ require("dotenv").config();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.use(departmentsRouter);
-app.use(itemsRouter);
+app.use("/departments", departmentsRouter);
+app.use("/items", itemsRouter);
 
 app.get("/", (req, res) => res.redirect("/departments"));
 
