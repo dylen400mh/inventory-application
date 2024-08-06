@@ -30,7 +30,8 @@ async function getDepartment(req, res) {
 
 async function updateDepartment(req, res) {
   try {
-    const { id, name, description } = req.body;
+    const { id } = req.params;
+    const { name, description } = req.body;
     await db.updateDepartment(id, name, description);
     res.redirect("/departments");
   } catch (error) {
@@ -40,9 +41,9 @@ async function updateDepartment(req, res) {
 
 async function deleteDepartment(req, res) {
   try {
-    const { id } = req.body;
+    const { id } = req.params;
     await db.deleteDepartment(id);
-    res.redirect("/");
+    res.redirect("/departments");
   } catch (error) {
     console.error(error);
   }
@@ -52,6 +53,16 @@ async function renderCreateDepartmentForm(req, res) {
   res.render("createDepartment");
 }
 
+async function renderUpdateDepartmentForm(req, res) {
+  const { id } = req.params;
+  try {
+    const department = await db.getOneDepartment(id);
+    res.render("updateDepartment", { department });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 module.exports = {
   createDepartment,
   getDepartment,
@@ -59,4 +70,5 @@ module.exports = {
   updateDepartment,
   deleteDepartment,
   renderCreateDepartmentForm,
+  renderUpdateDepartmentForm,
 };

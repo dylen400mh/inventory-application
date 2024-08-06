@@ -12,6 +12,7 @@
       <% departments.forEach(department => { %>
       <li>
         <a href="/items/department/<%=department.id%>"><%=department.name %></a>
+        <a href="/departments/update/<%=department.id %>">(Update)</a>
         <p><%=department.description%></p>
       </li>
       <% }) %>
