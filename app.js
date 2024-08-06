@@ -6,6 +6,8 @@ const path = require("node:path");
 
 require("dotenv").config();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 

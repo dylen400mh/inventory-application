@@ -4,7 +4,7 @@ async function createDepartment(req, res) {
   try {
     const { name, description } = req.body;
     await db.insertDepartment(name, description);
-    res.redirect("/");
+    res.redirect("/departments");
   } catch (error) {
     console.error(error);
   }
@@ -32,7 +32,7 @@ async function updateDepartment(req, res) {
   try {
     const { id, name, description } = req.body;
     await db.updateDepartment(id, name, description);
-    res.redirect("/");
+    res.redirect("/departments");
   } catch (error) {
     console.error(error);
   }
@@ -48,10 +48,15 @@ async function deleteDepartment(req, res) {
   }
 }
 
+async function renderCreateDepartmentForm(req, res) {
+  res.render("createDepartment");
+}
+
 module.exports = {
   createDepartment,
   getDepartment,
   getDepartments,
   updateDepartment,
   deleteDepartment,
+  renderCreateDepartmentForm,
 };
