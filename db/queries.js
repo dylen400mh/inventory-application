@@ -68,6 +68,12 @@ async function deleteItem(id) {
   await pool.query("DELETE FROM item WHERE id = $1", [id]);
 }
 
+async function deleteItemsInDepartment(department_id) {
+  await pool.query("DELETE FROM item WHERE department_id = $1", [
+    department_id,
+  ]);
+}
+
 module.exports = {
   insertDepartment,
   getAllDepartments,
@@ -79,4 +85,5 @@ module.exports = {
   getOneItem,
   updateItem,
   deleteItem,
+  deleteItemsInDepartment,
 };

@@ -42,6 +42,9 @@ async function updateDepartment(req, res) {
 async function deleteDepartment(req, res) {
   try {
     const { id } = req.params;
+    //delete items in department first
+    await db.deleteItemsInDepartment(id);
+    // then delete department
     await db.deleteDepartment(id);
     res.redirect("/departments");
   } catch (error) {
