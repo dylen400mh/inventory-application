@@ -2,9 +2,10 @@ const db = require("../db/queries");
 
 async function createItem(req, res) {
   try {
-    const { department_id, name, price, quantity, description } = req.body;
+    const { department_id } = req.params;
+    const { name, price, quantity, description } = req.body;
     await db.insertItem(department_id, name, price, quantity, description);
-    res.redirect("/");
+    res.redirect("/items/department/"+department_id);
   } catch (error) {
     console.error(error);
   }
@@ -14,7 +15,7 @@ async function getItemsByDepartment(req, res) {
   try {
     const { department_id } = req.params;
     items = await db.getItemsByDepartment(department_id);
-    res.render("items", { items });
+    res.render("items", { items, department_id });
   } catch (error) {
     console.error(error);
   }
@@ -49,10 +50,16 @@ async function deleteItem(req, res) {
   }
 }
 
+async function renderCreateItemForm(req, res) {
+  const { department_id } = req.params;
+  res.render("createItem", { department_id });
+}
+
 module.exports = {
   createItem,
   getItemsByDepartment,
   getItem,
   updateItem,
   deleteItem,
+  renderCreateItemForm,
 };
