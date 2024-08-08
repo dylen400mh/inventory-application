@@ -113,7 +113,7 @@ const populateItems = async () => {
 
 const populateDatabase = async () => {
   try {
-    //await createTables();
+    await createTables();
     await populateDepartments();
     await populateItems();
     console.log("Database populated successfully!");
